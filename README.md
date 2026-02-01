@@ -42,20 +42,22 @@ akobir-portfolio/
 ├── 🎨 style.css # All CSS styles (1200+ lines)
 ├── ⚙️ script.js # JavaScript functionality
 ├── 📄 akobir-cv.pdf # Resume/CV (downloadable)
+├── 📄 cv.html # HTML version of CV (edit and replace it with existing cv file)
 ├── 📖 README.md # This documentation file
 │
-├── 📂 images/ # Project images (if any)
+├── 📂 images/ # Project images (create it manually) 
 │ ├── project1.jpg
 │ ├── project2.jpg
 │ └── profile.jpg
 │
 ├── 📂 netlify/ # Netlify serverless functions
 │ └── 📂 functions/
-│ └── 📄 send-email.js # Email sending function
+│    └── 📄 send-email.js # Email sending function
 │
 ├── 📄 netlify.toml # Netlify configuration
 ├── 📄 .gitignore # Git ignore file
 └── 📄 LICENSE # MIT License
+└── 📄 .env # for developing stage to store EmailJS variables
 
 text
 
@@ -68,15 +70,13 @@ text
   4. Skills Section
   5. Professional Journey
   6. Projects Section (with filtering)
-  7. CV Section
-  8. Contact Section (with form)
-  9. Footer
+  7. Contact Section (with form)
+  8. Footer
 
 - **`style.css`** - Comprehensive CSS file with:
   - CSS Variables for theme colors
   - Responsive design (mobile-first approach)
   - Animations and transitions
-  - Print styles for CV
   - Dark blue/cyan color scheme
 
 - **`script.js`** - JavaScript functionality:
@@ -298,5 +298,5 @@ Akobir Mardonov
 
 ⭐ If you find this portfolio useful, please give it a star on GitHub! ⭐
 
-Last Updated: December 2024
+Last Updated: December 2026
 
