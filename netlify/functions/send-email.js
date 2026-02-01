@@ -28,7 +28,8 @@ exports.handler = async function (event, context) {
                     from_email: email,
                     message: message,
                     to_email: 'axmedovaasira@gmail.com',
-                    reply_to: email
+                    reply_to: email,
+                    time: new Date().toLocaleString()
                 }
             })
         });
