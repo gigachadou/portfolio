@@ -84,7 +84,9 @@ if (contactForm) {
         submitBtn.disabled = true;
 
         try {
-            const response = await fetch('/.netlify/functions/send-email', {
+            const functionURL = window.location.origin + '/.netlify/functions/send-email';
+
+            const response = await fetch(functionURL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
