@@ -80,11 +80,16 @@ if (contactForm) {
         // Show loading
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
+        const originalBtnHTML = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
 
         try {
-            const functionURL = window.location.origin + '/.netlify/functions/send-email';
+            // Get function URL
+            const baseURL = window.location.origin;
+            const functionURL = `${baseURL}/.netlify/functions/send-email`;
+
+            console.log('Calling function:', functionURL);
 
             const response = await fetch(functionURL, {
                 method: 'POST',
@@ -98,21 +103,35 @@ if (contactForm) {
                 })
             });
 
-            const data = await response.json();
+            console.log('Response status:', response.status);
 
-            if (data.success) {
+            // Try to parse response
+            let data;
+            try {
+                const text = await response.text();
+                data = JSON.parse(text);
+            } catch (parseError) {
+                console.error('Failed to parse response:', parseError);
+                showAlert('Server returned invalid response', 'error');
+                return;
+            }
+
+            console.log('Response data:', data);
+
+            if (response.ok && data.success) {
                 showAlert('Message sent successfully! I will reply soon.', 'success');
                 contactForm.reset();
             } else {
-                showAlert(`Failed to send: ${data.error || 'Unknown error'}`, 'error');
+                const errorMsg = data.error || data.details?.message || 'Failed to send message';
+                showAlert(`${errorMsg}`, 'error');
             }
 
         } catch (error) {
-            console.error('Error:', error);
-            showAlert('Network error. Please try again.', 'error');
+            console.error('Network error:', error);
+            showAlert('Network error. Please check your connection and try again.', 'error');
         } finally {
             // Reset button
-            submitBtn.innerHTML = originalText;
+            submitBtn.innerHTML = originalBtnHTML;
             submitBtn.disabled = false;
         }
     });
