@@ -54,7 +54,14 @@ filterButtons.forEach(button => {
     });
 });
 
-// Contact Form Submission with Netlify Function
+// EmailJS init
+if (window.emailjs) {
+    emailjs.init('D3RCSeYzab_hWa86v');
+} else {
+    console.warn('EmailJS SDK not loaded.');
+}
+
+// Contact Form Submission with EmailJS
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
@@ -85,50 +92,34 @@ if (contactForm) {
         submitBtn.disabled = true;
 
         try {
-            // Get function URL
-            const baseURL = window.location.origin;
-            const functionURL = `${baseURL}/.netlify/functions/send-email`;
-
-            console.log('Calling function:', functionURL);
-
-            const response = await fetch(functionURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    message: message
-                })
-            });
-
-            console.log('Response status:', response.status);
-
-            // Try to parse response
-            let data;
-            try {
-                const text = await response.text();
-                data = JSON.parse(text);
-            } catch (parseError) {
-                console.error('Failed to parse response:', parseError);
-                showAlert('Server returned invalid response', 'error');
+            if (!window.emailjs) {
+                showAlert('Email service not available. Please try again later.', 'error');
                 return;
             }
 
-            console.log('Response data:', data);
+            const templateParams = {
+                name,
+                email,
+                message
+            };
 
-            if (response.ok && data.success) {
+            const response = await emailjs.send(
+                'service_0te59da',
+                'template_gxjtcmd',
+                templateParams
+            );
+
+            if (response?.status === 200) {
                 showAlert('Message sent successfully! I will reply soon.', 'success');
                 contactForm.reset();
             } else {
-                const errorMsg = data.error || data.details?.message || 'Failed to send message';
-                showAlert(`${errorMsg}`, 'error');
+                showAlert('Failed to send message. Please try again.', 'error');
             }
 
         } catch (error) {
-            console.error('Network error:', error);
-            showAlert('Network error. Please check your connection and try again.', 'error');
+            console.error('EmailJS error:', error);
+            const errorMsg = error?.text || 'Failed to send message';
+            showAlert(`${errorMsg}`, 'error');
         } finally {
             // Reset button
             submitBtn.innerHTML = originalBtnHTML;
