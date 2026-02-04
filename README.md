@@ -41,7 +41,7 @@ akobir-portfolio/
 ├── 📄 index.html        # Main HTML file                                                   
 ├── 🎨 style.css         # All CSS styles (1200+ lines)                                                   
 ├── ⚙️ script.js         # JavaScript functionality                                                   
-│
+│                                                                                                      
 ├── 📄 akobir-cv.pdf     # Resume / CV (downloadable)                                                   
 ├── 📄 cv.html           # HTML version of CV (editable)                                                   
 ├── 📖 README.md         # Project documentation                                                   
