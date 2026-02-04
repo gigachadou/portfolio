@@ -38,28 +38,23 @@ A modern, alpine-themed portfolio website for Akobir Mardonov - Full-Stack Devel
 ## 📁 Project Structure
 akobir-portfolio/
 │
-├── 📄 index.html # Main HTML file
-├── 🎨 style.css # All CSS styles (1200+ lines)
-├── ⚙️ script.js # JavaScript functionality
-├── 📄 akobir-cv.pdf # Resume/CV (downloadable)
-├── 📄 cv.html # HTML version of CV (edit and replace it with existing cv file)
-├── 📖 README.md # This documentation file
+├── 📄 index.html        # Main HTML file
+├── 🎨 style.css         # All CSS styles (1200+ lines)
+├── ⚙️ script.js         # JavaScript functionality
 │
-├── 📂 images/ # Project images (create it manually) 
-│ ├── project1.jpg
-│ ├── project2.jpg
-│ └── profile.jpg
+├── 📄 akobir-cv.pdf     # Resume / CV (downloadable)
+├── 📄 cv.html           # HTML version of CV (editable)
+├── 📖 README.md         # Project documentation
 │
-├── 📂 netlify/ # Netlify serverless functions
-│ └── 📂 functions/
-│    └── 📄 send-email.js # Email sending function
+├── 📂 images/           # Project images
+│   ├── project1.jpg
+│   ├── project2.jpg
+│   └── profile.jpg
 │
-├── 📄 netlify.toml # Netlify configuration
-├── 📄 .gitignore # Git ignore file
-└── 📄 LICENSE # MIT License
-└── 📄 .env # for developing stage to store EmailJS variables
+├── 📄 netlify.toml      # Netlify configuration
+├── 📄 .gitignore        # Git ignore rules
+└── 📄 LICENSE           # MIT License
 
-text
 
 ### File Details:
 
