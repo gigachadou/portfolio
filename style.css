@@ -28,6 +28,10 @@ body {
     /* body'da background yo'q */
 }
 
+a {
+    text-decoration: none;
+}
+
 body::before {
     content: '';
     position: fixed;
